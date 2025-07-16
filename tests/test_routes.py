@@ -169,3 +169,10 @@ class TestProductRoutes(TestCase):
         self.assertEqual(Decimal(data["price"]), test_product.price)
         self.assertEqual(data["available"], test_product.available)
         self.assertEqual(data["category"], test_product.category.name)
+
+##Test NEGATIVO
+    def test_get_product_not_found(self):
+        """It should return 404 if Product not found"""
+        response = self.client.get(f"{BASE_URL}/0")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
